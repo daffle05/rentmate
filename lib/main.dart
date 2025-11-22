@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'core/hive/hive_initializer.dart';
 import 'core/theme/theme.dart'; // <--- Theme import
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
