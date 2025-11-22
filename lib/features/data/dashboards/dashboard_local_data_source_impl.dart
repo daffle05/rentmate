@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
-import 'package:rentmate/features/data/models/payment_model.dart';
 import 'package:rentmate/features/data/models/tenant_model.dart';
 import 'package:rentmate/features/data/dashboards/dashboard_model.dart';
+import 'package:rentmate/features/tenant/data/models/payment_model.dart';
 
 import 'dashboard_local_data_source.dart';
 
