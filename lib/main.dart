@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'core/hive/hive_initializer.dart';
 import 'core/theme/theme.dart'; // Theme import
@@ -28,7 +29,9 @@ Widget build(BuildContext context) {
 return MaterialApp(
 title: 'RentMate',
 debugShowCheckedModeBanner: false,
-theme: AppTheme.lightTheme,
+theme: AppTheme.lightTheme.copyWith(
+textTheme: GoogleFonts.latoTextTheme(), // Google Fonts applied
+),
 home: const HomeScreen(),
 );
 }
@@ -59,13 +62,15 @@ body: _pages[_currentIndex],
 bottomNavigationBar: BottomNavigationBar(
 currentIndex: _currentIndex,
 type: BottomNavigationBarType.fixed,
+selectedItemColor: Colors.blueAccent,
+unselectedItemColor: Colors.grey[600],
 onTap: (index) {
 setState(() {
 _currentIndex = index;
 });
 },
 items: const [
-BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Tenants'),
+BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Tenants'),
 BottomNavigationBarItem(icon: Icon(Icons.payment), label: 'Payments'),
 BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
 BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Reports'),
@@ -95,7 +100,7 @@ itemCount: otherFeatures.length,
 separatorBuilder: (context, index) => const Divider(),
 itemBuilder: (context, index) {
 return ListTile(
-title: Text(otherFeatures[index]),
+title: Text(otherFeatures[index], style: GoogleFonts.roboto()),
 trailing: const Icon(Icons.chevron_right),
 onTap: () {
 // TODO: Navigate to respective feature pages
