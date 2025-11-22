@@ -2,7 +2,6 @@
 
 import 'package:hive/hive.dart';
 import 'package:rentmate/features/data/models/tenant_model.dart';
-import 'package:rentmate/features/data/models/payment_model.dart';
 
 Future<void> registerHiveAdapters() async {
   // Register TenantModel adapter
@@ -12,6 +11,13 @@ Future<void> registerHiveAdapters() async {
 
   // Register PaymentModel adapter
   if (!Hive.isAdapterRegistered(PaymentModelAdapter().typeId)) {
-    Hive.registerAdapter(PaymentModelAdapter());
+    Hive.registerAdapter(PaymentModelAdapter() as TypeAdapter<dynamic>);
   }
+}
+
+extension on PaymentModelAdapter {
+  int get typeId => null;
+}
+
+class PaymentModelAdapter {
 }

@@ -1,6 +1,6 @@
 // lib/features/tenant/data/datasources/payment_local_data_source_impl.dart
 import 'package:hive/hive.dart';
-import '../models/payment_model.dart';
+import 'package:rentmate/features/tenant/data/models/payment_model.dart';
 import 'payment_local_data_source.dart';
 
 class PaymentLocalDataSourceImpl implements PaymentLocalDataSource {
