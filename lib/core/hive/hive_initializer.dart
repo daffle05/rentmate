@@ -16,7 +16,7 @@ Future<void> registerHiveAdapters() async {
 }
 
 extension on PaymentModelAdapter {
-  int get typeId => null;
+  int get typeId => 1; // Assign a unique integer typeId for PaymentModelAdapter
 }
 
 class PaymentModelAdapter {
