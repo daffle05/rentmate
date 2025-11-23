@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/hive/hive_initializer.dart';
 import 'core/theme/theme.dart';
 import 'features/navigation/bottom_nav.dart';
 
@@ -16,6 +15,9 @@ Future<void> main() async {
   await Hive.openBox('dashboard');
 
   runApp(const ProviderScope(child: MyApp()));
+}
+
+Future<void> registerHiveAdapters() async {
 }
 
 class MyApp extends ConsumerWidget {

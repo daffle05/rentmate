@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'tenant_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 class TenantModel extends HiveObject {
   @HiveField(0)
   final String id;
@@ -11,41 +11,19 @@ class TenantModel extends HiveObject {
   final String name;
 
   @HiveField(2)
-  final String roomNumber;
+  final String phone;
 
   @HiveField(3)
-  final double rentAmount;
-
-  @HiveField(4)
-  final int dueDate; // Day of month (1–31)
+  final String roomNumber;
 
   TenantModel({
     required this.id,
     required this.name,
-    required this.roomNumber,
-    required this.rentAmount,
-    required this.dueDate,
+    required this.phone,
+    required this.roomNumber, required int dueDate, required double rentAmount,
   });
 
-  // Manual equality
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+  get rentAmount => null;
 
-    return other is TenantModel &&
-        other.id == id &&
-        other.name == name &&
-        other.roomNumber == roomNumber &&
-        other.rentAmount == rentAmount &&
-        other.dueDate == dueDate;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-        name.hashCode ^
-        roomNumber.hashCode ^
-        rentAmount.hashCode ^
-        dueDate.hashCode;
-  }
+  get dueDate => null;
 }

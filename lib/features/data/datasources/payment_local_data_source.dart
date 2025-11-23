@@ -1,11 +1,35 @@
-// lib/features/tenant/data/datasources/payment_local_data_source.dart
+import 'package:hive/hive.dart';
 import 'package:rentmate/features/tenant/data/models/payment_model.dart';
 
+class PaymentLocalDataSource {
+  final Box<PaymentModel> paymentBox;
 
-abstract class PaymentLocalDataSource {
-  Future<PaymentModel> addPayment(PaymentModel payment);
-  Future<List<PaymentModel>> getAllPayments();
-  Future<List<PaymentModel>> getPaymentsByTenant(String tenantId);
-  Future<PaymentModel> updatePayment(PaymentModel payment);
-  Future<void> deletePayment(String id);
+  PaymentLocalDataSource(this.paymentBox);
+
+  // CREATE
+  Future<void> addPayment(PaymentModel payment) async {
+    await paymentBox.put(payment.id, payment);
+  }
+
+  // READ ALL
+  List<PaymentModel> getAllPayments() {
+    return paymentBox.values.toList();
+  }
+
+  // READ by Tenant
+  List<PaymentModel> getPaymentsByTenant(String tenantId) {
+    return paymentBox.values
+        .where((payment) => payment.tenantId == tenantId)
+        .toList();
+  }
+
+  // UPDATE
+  Future<void> updatePayment(PaymentModel payment) async {
+    await paymentBox.put(payment.id, payment);
+  }
+
+  // DELETE
+  Future<void> deletePayment(String id) async {
+    await paymentBox.delete(id);
+  }
 }

@@ -21,7 +21,7 @@ class TenantModelAdapter extends TypeAdapter<TenantModel> {
       name: fields[1] as String,
       roomNumber: fields[2] as String,
       rentAmount: fields[3] as double,
-      dueDate: fields[4] as int,
+      dueDate: fields[4] as int, phone: '',
     );
   }
 

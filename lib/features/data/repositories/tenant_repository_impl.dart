@@ -22,7 +22,7 @@ class TenantRepositoryImpl implements TenantRepository {
   @override
   Future<Either<Failure, List<TenantModel>>> getAllTenants() async {
     try {
-      final result = await localDataSource.getAllTenants();
+      final result = await localDataSource.getAllTenants;
       return Right(result);
     } catch (_) {
       return Left(CacheFailure('Failed to load tenants.'));

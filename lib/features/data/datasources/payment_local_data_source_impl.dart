@@ -1,37 +1,39 @@
-// lib/features/tenant/data/datasources/payment_local_data_source_impl.dart
 import 'package:hive/hive.dart';
 import 'package:rentmate/features/tenant/data/models/payment_model.dart';
 import 'payment_local_data_source.dart';
 
-class PaymentLocalDataSourceImpl implements PaymentLocalDataSource {
-  final Box<PaymentModel> paymentBox;
+class PaymentLocalDataSourceImpl extends PaymentLocalDataSource {
+  final Box<PaymentModel> _paymentBox;
 
-  PaymentLocalDataSourceImpl(this.paymentBox);
+  PaymentLocalDataSourceImpl(this._paymentBox) : super(int as Box<PaymentModel>);
 
   @override
-  Future<PaymentModel> addPayment(PaymentModel payment) async {
-    await paymentBox.put(payment.id, payment);
-    return payment;
+  Box<PaymentModel> get paymentBox => _paymentBox;
+
+  @override
+  Future<void> addPayment(PaymentModel payment) async {
+    await _paymentBox.put(payment.id, payment);
   }
 
   @override
-  Future<List<PaymentModel>> getAllPayments() async {
-    return paymentBox.values.toList();
+  List<PaymentModel> getAllPayments() {
+    return _paymentBox.values.toList();
   }
 
   @override
-  Future<List<PaymentModel>> getPaymentsByTenant(String tenantId) async {
-    return paymentBox.values.where((p) => p.tenantId == tenantId).toList();
+  List<PaymentModel> getPaymentsByTenant(String tenantId) {
+    return _paymentBox.values
+        .where((p) => p.tenantId == tenantId)
+        .toList();
   }
 
   @override
-  Future<PaymentModel> updatePayment(PaymentModel payment) async {
-    await payment.save();
-    return payment;
+  Future<void> updatePayment(PaymentModel payment) async {
+    await _paymentBox.put(payment.id, payment);
   }
 
   @override
   Future<void> deletePayment(String id) async {
-    await paymentBox.delete(id);
+    await _paymentBox.delete(id);
   }
 }

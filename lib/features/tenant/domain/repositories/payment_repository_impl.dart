@@ -1,8 +1,8 @@
 // lib/features/tenant/data/repositories/payment_repository_impl.dart
 import 'package:dartz/dartz.dart';
 import 'package:rentmate/features/data/datasources/payment_local_data_source.dart';
-import 'package:rentmate/features/tenant/domain/repositories/payment_repository.dart';
 import 'package:rentmate/features/tenant/data/models/payment_model.dart';
+import 'package:rentmate/features/tenant/domain/repositories/payment_repository.dart';
 import 'package:rentmate/core/error/failure.dart';
 
 class PaymentRepositoryImpl implements PaymentRepository {
@@ -11,10 +11,13 @@ class PaymentRepositoryImpl implements PaymentRepository {
   PaymentRepositoryImpl(this.localDataSource);
 
   @override
+  PaymentLocalDataSource get datasource => localDataSource;
+
+  @override
   Future<Either<Failure, PaymentModel>> addPayment(PaymentModel payment) async {
     try {
-      final result = await localDataSource.addPayment(payment);
-      return Right(result);
+      await localDataSource.addPayment(payment);
+      return Right(payment);
     } catch (e) {
       return Left(CacheFailure('Failed to add payment: ${e.toString()}'));
     }
@@ -43,8 +46,8 @@ class PaymentRepositoryImpl implements PaymentRepository {
   @override
   Future<Either<Failure, PaymentModel>> updatePayment(PaymentModel payment) async {
     try {
-      final result = await localDataSource.updatePayment(payment);
-      return Right(result);
+      await localDataSource.updatePayment(payment);
+      return Right(payment);
     } catch (e) {
       return Left(CacheFailure('Failed to update payment: ${e.toString()}'));
     }
