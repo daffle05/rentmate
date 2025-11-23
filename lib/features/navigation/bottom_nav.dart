@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../dashboard/presentation/dashboard_page.dart';
-import '../tenant/presentation/tenant_list_page.dart';
-import '../payments/presentation/payment_overview_page.dart';
+import 'package:rentmate/features/presentation/dashboard_page.dart';
+import '../tenant/presentation/pages/tenant_list_page.dart';
+import '../tenant/presentation/payment_overview_page.dart';
 import '../reports/presentation/reports_page.dart';
 import '../more/more_page.dart';
 
